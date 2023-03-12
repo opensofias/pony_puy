@@ -7,23 +7,31 @@ function generatePlayfield() {
 	const colors = ["red", "green", "blue", "yellow"]; // array of available box colors
 
 	// create the SVG element and set its attributes
-	const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-	svg.setAttribute("width", playfieldWidth * boxSize);
-	svg.setAttribute("height", playfieldHeight * boxSize);
+	const svg = elem ({
+		tag: 'svg', svg: true,
+		attr: {
+			width: playfieldWidth * boxSize,
+			height: playfieldHeight * boxSize
+		}
+	})
 	
 	// create a group element to hold all the boxes
-	const boxGroup = document.createElementNS("http://www.w3.org/2000/svg", "g");
+	const boxGroup = elem ({tag: 'g', svg: true})
 	svg.appendChild(boxGroup);
 	
 	// generate the boxes and add them to the group
 	for (let y = 0; y < playfieldHeight; y++) {
 		for (let x = 0; x < playfieldWidth; x++) {
-			const box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-			box.setAttribute("x", x * boxSize);
-			box.setAttribute("y", y * boxSize);
-			box.setAttribute("width", boxSize);
-			box.setAttribute("height", boxSize);
-			box.setAttribute("fill", colors[Math.floor(Math.random() * colors.length)]);
+			const box = elem ({
+				tag: 'rect', svg: true,
+				attr: {
+					x: x * boxSize,
+					y: y * boxSize,
+					width: boxSize,
+					height: boxSize,
+					fill: colors[Math.floor(Math.random() * colors.length)],
+				}
+			})
 			boxGroup.appendChild(box);
 		}
 	}
