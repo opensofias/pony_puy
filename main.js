@@ -1,3 +1,5 @@
+import { elem } from "./tools.js"
+
 function generatePlayfield() {
 	const playfieldWidth = 6; // number of columns
 	const playfieldHeight = 12; // number of rows
