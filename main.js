@@ -1,23 +1,23 @@
 import { elem } from "./tools.js"
 
-function generatePlayfield() {
-	const playfieldWidth = 6; // number of columns
-	const playfieldHeight = 12; // number of rows
+const generatePlayfield = ({
+	size = [12, 6],
+	colors = ["red", "green", "blue", "yellow"]
+}) => {
 	const boxSize = 40; // size of each box in pixels
-	const colors = ["red", "green", "blue", "yellow"]; // array of available box colors
 
 	// create the SVG element and set its attributes
 	const svg = elem ({
 		tag: 'svg', svg: true,
 		attr: {
-			width: playfieldWidth * boxSize,
-			height: playfieldHeight * boxSize
+			width: size[1] * boxSize,
+			height: size[0] * boxSize
 		}
 	})
 		
 	// generate the boxes and add them to the group
-	for (let y = 0; y < playfieldHeight; y++) {
-		for (let x = 0; x < playfieldWidth; x++) {
+	for (let y = 0; y < size[0]; y++) {
+		for (let x = 0; x < size[1]; x++) {
 			const box = elem ({
 				tag: 'rect', svg: true,
 				attr: {
