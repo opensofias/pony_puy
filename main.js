@@ -36,5 +36,5 @@ const generatePlayfield = ({
 }
 
 // example usage
-const playfield = generatePlayfield();
+const playfield = generatePlayfield({});
 document.body.appendChild(playfield);
