@@ -14,11 +14,7 @@ function generatePlayfield() {
 			height: playfieldHeight * boxSize
 		}
 	})
-	
-	// create a group element to hold all the boxes
-	const boxGroup = elem ({tag: 'g', svg: true})
-	svg.appendChild(boxGroup);
-	
+		
 	// generate the boxes and add them to the group
 	for (let y = 0; y < playfieldHeight; y++) {
 		for (let x = 0; x < playfieldWidth; x++) {
@@ -32,7 +28,7 @@ function generatePlayfield() {
 					fill: colors[Math.floor(Math.random() * colors.length)],
 				}
 			})
-			boxGroup.appendChild(box);
+			svg.appendChild(box);
 		}
 	}
 	
