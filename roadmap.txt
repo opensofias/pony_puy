@@ -1,0 +1,6 @@
+* setup panel
+
+* playfield builder
+* match finder
+* gravity
+* heartbeat
