@@ -18,13 +18,13 @@ function generatePlayfield() {
 	// generate the boxes and add them to the group
 	for (let y = 0; y < playfieldHeight; y++) {
 		for (let x = 0; x < playfieldWidth; x++) {
-		const box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-		box.setAttribute("x", x * boxSize);
-		box.setAttribute("y", y * boxSize);
-		box.setAttribute("width", boxSize);
-		box.setAttribute("height", boxSize);
-		box.setAttribute("fill", colors[Math.floor(Math.random() * colors.length)]);
-		boxGroup.appendChild(box);
+			const box = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+			box.setAttribute("x", x * boxSize);
+			box.setAttribute("y", y * boxSize);
+			box.setAttribute("width", boxSize);
+			box.setAttribute("height", boxSize);
+			box.setAttribute("fill", colors[Math.floor(Math.random() * colors.length)]);
+			boxGroup.appendChild(box);
 		}
 	}
 	
