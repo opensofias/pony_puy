@@ -1,4 +1,4 @@
-import { elem } from "./tools.js"
+import { elem, hyperIter } from "./tools.js"
 
 const generatePlayfield = ({
 	size = [12, 6],
@@ -16,21 +16,19 @@ const generatePlayfield = ({
 	})
 		
 	// generate the boxes and add them to the group
-	for (let y = 0; y < size[0]; y++) {
-		for (let x = 0; x < size[1]; x++) {
-			const box = elem ({
-				tag: 'rect', svg: true,
-				attr: {
-					x: x * boxSize,
-					y: y * boxSize,
-					width: boxSize,
-					height: boxSize,
-					fill: colors[Math.floor(Math.random() * colors.length)],
-				}
-			})
-			svg.appendChild(box);
-		}
-	}
+	hyperIter (size, ([y, x]) => {
+		const box = elem ({
+			tag: 'rect', svg: true,
+			attr: {
+				x: x * boxSize,
+				y: y * boxSize,
+				width: boxSize,
+				height: boxSize,
+				fill: colors[Math.floor(Math.random() * colors.length)],
+			}
+		})
+		svg.appendChild(box);
+	})
 	
 	return svg;
 }
