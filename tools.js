@@ -1,4 +1,4 @@
-export const elem = ({tag = 'div', attr = {}, content = [], svg = false}) => {
+export const elem = ({tag = 'div', attr = {}, content = [], svg = false, mixin = {}}) => {
 	const result = svg ?
 		document.createElementNS ('http://www.w3.org/2000/svg', tag) :
 		document.createElement (tag)
@@ -12,12 +12,12 @@ export const elem = ({tag = 'div', attr = {}, content = [], svg = false}) => {
 			.forEach(contEl => result.appendChild(contEl))
 	) (typeof content)
 
-	return result
+	return Object.assign (result, mixin)
 }
 
 export const hyperIter = (size = [], fun = x => x) => {
 	if (!(size.length) || Math.min (...size) < 1) return []
-	
+
 	const count = (new Array(size.length)).fill(0)
 	const result = []
 	let carry = 0
