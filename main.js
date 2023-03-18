@@ -21,7 +21,7 @@ const generatePlayfield = ({
 			viewBox: "0 0 " + size[1] + ' ' + size[0]
 		},
 		content: gems,
-		mixin: {boxes: gems, size, colors}
+		mixin: {gems, size, colors}
 	});
 }
 
