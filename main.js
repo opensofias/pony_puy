@@ -7,13 +7,11 @@ const generatePlayfield = ({
 	// generate the boxes
 	const boxes = hyperIter (size, ([y, x]) => {
 		return elem ({
-			tag: 'rect', svg: true,
+			tag: 'path', svg: true,
 			attr: {
-				x, y,
-				width: 1,
-				height: 1,
 				fill: colors[Math.floor(Math.random() * colors.length)],
-			}
+			},
+			style: { '--x': x, '--y': y, }
 		})
 	})
 
