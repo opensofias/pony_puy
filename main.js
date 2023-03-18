@@ -4,17 +4,14 @@ const generatePlayfield = ({
 	size = [12, 6],
 	colors = ["red", "green", "blue", "yellow"]
 }) => {
-	const boxSize = 40; // size of each box in pixels
-
 	// generate the boxes
 	const boxes = hyperIter (size, ([y, x]) => {
 		return elem ({
 			tag: 'rect', svg: true,
 			attr: {
-				x: x * boxSize,
-				y: y * boxSize,
-				width: boxSize,
-				height: boxSize,
+				x, y,
+				width: 1,
+				height: 1,
 				fill: colors[Math.floor(Math.random() * colors.length)],
 			}
 		})
@@ -25,8 +22,7 @@ const generatePlayfield = ({
 	return elem ({
 		tag: 'svg', svg: true,
 		attr: {
-			width: size[1] * boxSize,
-			height: size[0] * boxSize
+			viewBox: "0 0 " + size[1] + ' ' + size[0]
 		},
 		content: boxes,
 		mixin: {boxes, size, colors}
