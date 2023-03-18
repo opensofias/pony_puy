@@ -1,9 +1,10 @@
-export const elem = ({tag = 'div', attr = {}, content = [], svg = false, mixin = {}}) => {
+export const elem = ({tag = 'div', attr = {}, content = [], svg = false, mixin = {}, style = {}}) => {
 	const result = svg ?
 		document.createElementNS ('http://www.w3.org/2000/svg', tag) :
 		document.createElement (tag)
 
 	for (const name in attr) result.setAttribute(name, attr[name])
+	for (const name in style) result.style.setProperty(name, style[name])
 
 	void (type =>
 		['string', 'number'].includes (type) ?
