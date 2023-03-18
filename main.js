@@ -17,8 +17,6 @@ const generatePlayfield = ({
 		})
 	})
 
-	console.log (boxes)
-
 	return elem ({
 		tag: 'svg', svg: true,
 		attr: {
