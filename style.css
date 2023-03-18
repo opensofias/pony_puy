@@ -16,9 +16,12 @@ svg {
 }
 
 path {
-	transform: translate(
-		calc(var(--x) * 1px),
-		calc(var(--y) * 1px)
-	);
-	d: path('M0,.5 L.5,1 L1,.5 L.5,0 Z');
+	transform:
+		translate(
+			calc(var(--x) * 1px),
+			calc(var(--y) * 1px)
+		)
+		scale(calc(1/16))
+	;
+	d: path('M1,8 L3,13 L8,15 L13,13 L15,8 L13,3 L8,1 L3,3 Z');
 }
