@@ -2,16 +2,16 @@ import { elem, hyperIter } from "./tools.js"
 
 const generatePlayfield = ({
 	size = [12, 6],
-	colors = ["red", "green", "blue", "yellow"]
+	colors = 4
 }) => {
 	// generate the boxes
 	const gems = hyperIter (size, ([y, x]) => {
 		return elem ({
 			tag: 'path', svg: true,
-			attr: {
-				fill: colors[Math.floor(Math.random() * colors.length)],
-			},
-			style: { '--x': x, '--y': y, }
+			style: {
+				'--x': x, '--y': y,
+				'--color': Math.floor(Math.random() * colors)
+			}
 		})
 	})
 
@@ -21,6 +21,7 @@ const generatePlayfield = ({
 			viewBox: "0 0 " + size[1] + ' ' + size[0]
 		},
 		content: gems,
+		style: {'--colors': colors},
 		mixin: {gems, size, colors}
 	});
 }

@@ -14,6 +14,16 @@ svg {
 	inherits: true;
 	initial-value: 0;
 }
+@property --color {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
+}
+@property --colors {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 1;
+}
 
 path {
 	transform:
@@ -23,5 +33,6 @@ path {
 		)
 		scale(calc(1/16))
 	;
+	fill: hsl(calc(120deg + 360deg * var(--color) / var(--colors)), 75%, 50%);
 	d: path('M1,8 L3,13 L8,15 L13,13 L15,8 L13,3 L8,1 L3,3 Z');
 }
