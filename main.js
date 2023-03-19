@@ -7,7 +7,7 @@ const generatePlayfield = ({
 	// generate the boxes
 	const gems = hyperIter (size, ([y, x]) => {
 		return elem ({
-			tag: 'path', svg: true,
+			tag: 'path', svg: true, cls: 'gem',
 			style: {
 				'--x': x, '--y': y,
 				'--color': Math.floor(Math.random() * colors)
@@ -16,7 +16,7 @@ const generatePlayfield = ({
 	})
 
 	return elem ({
-		tag: 'svg', svg: true,
+		tag: 'svg', svg: true, id: 'playfield',
 		attr: {
 			viewBox: "0 0 " + size[1] + ' ' + size[0]
 		},
