@@ -4,7 +4,7 @@ const generatePlayfield = ({
 	size = [12, 6],
 	colors = 4
 }) => elem ({
-	tag: 'svg', svg: true, id: 'playfield',
+	tag: 'svg', svg: true, cls: 'playfield',
 	attr: {
 		viewBox: "0 0 " + size[1] + ' ' + size[0]
 	},
