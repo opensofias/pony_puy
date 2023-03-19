@@ -8,7 +8,7 @@ const generatePlayfield = ({
 	attr: {
 		viewBox: "0 0 " + size[1] + ' ' + size[0]
 	},
-	style: {'--colors': colors},
+	cssVar: {colors},
 	mixin: {
 		gems: new Array (size[0] * size [1]),
 		size, colors
@@ -23,9 +23,9 @@ const fillPlayfield = field => {
 		if (!field.gems [idx]) {
 			const gem = elem ({
 				tag: 'path', svg: true, cls: 'gem',
-				style: {
-					'--x': x, '--y': y,
-					'--color': Math.floor(Math.random() * field.colors)
+				cssVar: {
+					x, y,
+					color: Math.floor(Math.random() * field.colors)
 				}
 			})
 			field.gems[idx] = gem
