@@ -1,6 +1,6 @@
 export const elem = ({
 	tag = 'div', svg = false,
-	attr = {}, style = {}, cStyle: cssVar = {},
+	attr = {}, style = {}, cssVar = {},
 	cls = '', id= '',
 	content = [], mixin = {},
 }) => {
