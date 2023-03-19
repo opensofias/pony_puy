@@ -3,29 +3,39 @@ import { elem, hyperIter } from "./tools.js"
 const generatePlayfield = ({
 	size = [12, 6],
 	colors = 4
-}) => {
-	// generate the boxes
-	const gems = hyperIter (size, ([y, x]) => {
-		return elem ({
-			tag: 'path', svg: true, cls: 'gem',
-			style: {
-				'--x': x, '--y': y,
-				'--color': Math.floor(Math.random() * colors)
-			}
-		})
+}) => elem ({
+	tag: 'svg', svg: true, id: 'playfield',
+	attr: {
+		viewBox: "0 0 " + size[1] + ' ' + size[0]
+	},
+	style: {'--colors': colors},
+	mixin: {
+		gems: new Array (size[0] * size [1]),
+		size, colors
+	}
+})
+
+const fillPlayfield = field => {
+	const {size} = field
+
+	hyperIter (size, ([y, x]) => {
+		const idx = (y + size [0] * x)
+		if (!field.gems [idx]) {
+			const gem = elem ({
+				tag: 'path', svg: true, cls: 'gem',
+				style: {
+					'--x': x, '--y': y,
+					'--color': Math.floor(Math.random() * field.colors)
+				}
+			})
+			field.gems[idx] = gem
+			field.appendChild (gem)
+		}
 	})
 
-	return elem ({
-		tag: 'svg', svg: true, id: 'playfield',
-		attr: {
-			viewBox: "0 0 " + size[1] + ' ' + size[0]
-		},
-		content: gems,
-		style: {'--colors': colors},
-		mixin: {gems, size, colors}
-	});
+	return field
 }
 
 // example usage
-const playfield = generatePlayfield({});
+const playfield = fillPlayfield (generatePlayfield({}));
 document.body.appendChild(playfield);
