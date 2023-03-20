@@ -15,19 +15,24 @@ const generatePlayfield = ({
 	}
 })
 
+const newGem = ({field, y, x, color}) =>
+	elem ({
+		tag: 'path', svg: true, cls: 'gem',
+		cssVar: {
+			x, y,
+			color: color == 'random' ?
+				Math.floor(Math.random() * field.colors) :
+				color
+		}
+	})
+
 const fillPlayfield = field => {
 	const {size} = field
 
 	hyperIter (size, ([y, x]) => {
 		const idx = (y + size [0] * x)
 		if (!field.gems [idx]) {
-			const gem = elem ({
-				tag: 'path', svg: true, cls: 'gem',
-				cssVar: {
-					x, y,
-					color: Math.floor(Math.random() * field.colors)
-				}
-			})
+			const gem = newGem ({field, y, x, color: 'random'})
 			field.gems[idx] = gem
 			field.appendChild (gem)
 		}
