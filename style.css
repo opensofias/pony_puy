@@ -20,6 +20,21 @@ body {
 	d: path('M1,8 L3,13 L8,15 L13,13 L15,8 L13,3 L8,1 L3,3 Z');
 }
 
+/* mode for coding gem color in shape/angle for colorblind users etc */
+.anglecoded .gem {
+	transform:
+		translate(
+			calc(var(--x) * 1px),
+			calc(var(--y) * 1px)
+		)
+		scale(calc(1/16))
+		translate(8px, 8px)
+		rotate(calc(360deg * var(--color) / var(--colors)))
+		translate(-8px, -8px)
+	;
+	d: path('M1,8 L3,13 L8,15 L13,13 L15,8 L13,3 L8,8 L3,3 Z');
+}
+
 @property --x {
 	syntax: "<number>";
 	inherits: true;
