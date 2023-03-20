@@ -9,29 +9,33 @@ body {
 	height: 100vh
 }
 .gem {
+	transition-duration: .125s;
+	transition-timing-function: linear;
 	transform:
 		translate(
 			calc(var(--x) * 1px),
 			calc(var(--y) * 1px)
 		)
-		scale(calc(1/16))
+		translate(.5px, .5px)
+		scale(calc(1/16 * var(--gemZoom)))
+		rotate(calc(360deg * var(--gemRot)))
+		translate(-8px, -8px)
 	;
-	fill: hsl(calc(120deg + 360deg * var(--color) / var(--colors)), 75%, 50%);
+	fill: hsl(
+		calc(120deg + 360deg * var(--color) / var(--colors)),
+		calc(100% * var(--gemSat)),
+		calc(100% * var(--gemLit))
+	);
+	--gemRot: 0;
+	--gemZoom: 1;
+	--gemSat: .75;
+	--gemLit: .5;
 	d: path('M1,8 L3,13 L8,15 L13,13 L15,8 L13,3 L8,1 L3,3 Z');
 }
 
 /* mode for coding gem color in shape/angle for colorblind users etc */
 .anglecoded .gem {
-	transform:
-		translate(
-			calc(var(--x) * 1px),
-			calc(var(--y) * 1px)
-		)
-		scale(calc(1/16))
-		translate(8px, 8px)
-		rotate(calc(360deg * var(--color) / var(--colors)))
-		translate(-8px, -8px)
-	;
+	--gemRot: calc(var(--color) / var(--colors));
 	d: path('M1,8 L3,13 L8,15 L13,13 L15,8 L13,3 L8,8 L3,3 Z');
 }
 
@@ -54,4 +58,24 @@ body {
 	syntax: "<number>";
 	inherits: true;
 	initial-value: 1;
+}
+@property --gemZoom {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 1;
+}
+@property --gemRot {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
+}
+@property --gemSat {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
+}
+@property --gemLit {
+	syntax: "<number>";
+	inherits: true;
+	initial-value: 0;
 }
