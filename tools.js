@@ -11,7 +11,7 @@ export const elem = ({
 	for (const name in attr) result.setAttribute(name, attr[name])
 	for (const name in style) result.style.setProperty(name, style[name])
 	for (const name in cssVar) result.style.setProperty('--' + name, cssVar[name])
-	cls && cls.split().forEach (x => result.classList.add (x))
+	cls && cls.split(' ').forEach (x => result.classList.add (x))
 	id && (result.id = id)
 
 	void (type =>
