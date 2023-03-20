@@ -33,6 +33,13 @@ body {
 	d: path('M1,8 L3,13 L8,15 L13,13 L15,8 L13,3 L8,1 L3,3 Z');
 }
 
+.gem:hover {
+	--gemZoom: 1.25;
+	--gemSat: .875;
+	--gemLit: .625;
+	z-index: 1;
+}
+
 /* mode for coding gem color in shape/angle for colorblind users etc */
 .anglecoded .gem {
 	--gemRot: calc(var(--color) / var(--colors));
