@@ -49,6 +49,10 @@ body {
 	d: path('M1,8 L3,13 L8,15 L13,13 L15,8 L13,3 L8,8 L3,3 Z');
 }
 
+.chevGems .gem {
+	d: path('M3,13 L8,11 L13,13 L13,5 L8,3 L3,5 Z')
+}
+
 @property --x {
 	syntax: "<number>";
 	inherits: true;
