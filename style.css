@@ -19,7 +19,6 @@ body {
 		translate(.5px, .5px)
 		scale(calc(1/16 * var(--gemZoom)))
 		rotate(calc(360deg * var(--gemRot)))
-		translate(-8px, -8px)
 	;
 	fill: hsl(
 		calc(120deg + 360deg * var(--color) / var(--colors)),
@@ -30,7 +29,7 @@ body {
 	--gemZoom: 1;
 	--gemSat: .75;
 	--gemLit: .5;
-	d: path('M1,8 L3,13 L8,15 L13,13 L15,8 L13,3 L8,1 L3,3 Z');
+	d: path('M-7,0 L-5,5 L0,7 L5,5 L7,0 L5,-5 L0,-7 L-5,-5 Z');
 }
 
 .gem:hover {
@@ -46,11 +45,11 @@ body {
 }
 
 .notchGems .gem {
-	d: path('M1,8 L3,13 L8,15 L13,13 L15,8 L13,3 L8,8 L3,3 Z');
+	d: path('M-7,0 L-5,5 L0,7 L5,5 L7,0 L5,-5 L0,0 L-5,-5 Z');
 }
 
 .chevGems .gem {
-	d: path('M3,13 L8,11 L13,13 L13,5 L8,3 L3,5 Z')
+	d: path('M-5,5 L0,3 L5,5 L5,-3 L0,-5 L-5,-3 Z')
 }
 
 @property --x {
