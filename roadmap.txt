@@ -2,5 +2,21 @@
 
 * playfield builder ☑️
 * match finder
+ * orthagonal, diagonal, blob
 * gravity
 * heartbeat
+* game controls
+ * keyboard
+ * gamepad
+ * mouse
+
+current todos:
+
+* CSS rule generator function
+* generating paths for blobbed-together gems
+
+maybe:
+
+* explanatory comments
+* more gem shapes
+* sound synthesis
