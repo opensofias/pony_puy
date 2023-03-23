@@ -1,4 +1,5 @@
 import { elem, hyperIter } from "./tools.js"
+import { generateBlobStyles } from "./style.js"
 
 const generatePlayfield = ({
 	size = [12, 6],
@@ -44,3 +45,4 @@ const fillPlayfield = field => {
 // example usage
 const playfield = fillPlayfield (generatePlayfield({}));
 document.body.appendChild(playfield);
+generateBlobStyles ()
