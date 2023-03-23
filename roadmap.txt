@@ -1,6 +1,5 @@
 * setup panel
 
-* playfield builder ☑️
 * match finder
  * orthagonal, diagonal, blob
 * gravity
@@ -11,12 +10,14 @@
  * mouse
 
 current todos:
-
-* CSS rule generator function
-* generating paths for blobbed-together gems
+* blob detection
 
 maybe:
 
 * explanatory comments
 * more gem shapes
 * sound synthesis
+
+done:
+* generating paths for blobbed-together gems
+* playfield builder ☑️
