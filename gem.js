@@ -21,6 +21,14 @@ export class Gem {
 	setCssVar (prop, val) {
 		this.element.style.setProperty ('--' + prop, val)
 	}
+	set blob (sides) {
+		for (const side in sides)
+			this.element.classList[sides [side] ? 'add' : 'remove'] ('blob-' + side)
+	}
+	get blob () {return directions.reduce ((result, direction) =>
+			({...result, [direction]: this.element.classList.contains ('blob-' + direction)}),
+		{}
+	)}
 }
 
 ['x', 'y', 'color'].forEach(prop =>
