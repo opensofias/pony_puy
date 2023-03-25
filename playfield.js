@@ -1,4 +1,5 @@
 import { hyperIter, elem } from "./tools.js"
+import { Gem } from "./gem.js"
 
 export class Playfield {
 	constructor ({
@@ -13,7 +14,7 @@ export class Playfield {
 			cssVar: { colors },
 			mixin: { ob: this }
 		}),
-		gemMap: new Array (size[0] * size [1]).fill (-1),
+		gems: new Array (size[0] * size [1]),
 		size, colors
 	})}
 	pos2idx ({y, x}) { return y + this.size [0] * x }
@@ -24,13 +25,10 @@ export class Playfield {
 	newGem ({y, x, color}) {
 		color == 'random' && (color = Math.floor(Math.random() * this.colors))
 		const pos = this.pos2idx ({y, x})
-		if (this.gemMap [pos] == -1) {
-			this.gemMap [pos] = color
-			const gem = elem ({
-				tag: 'path', svg: true, cls: 'gem',
-				cssVar: { x, y, color }
-			})
-			this.element.appendChild (gem)
+		if (!this.gems [pos]) {
+			const gem = new Gem ({ x, y, color })
+			this.gems [pos] = gem
+			this.element.appendChild (gem.element)
 			return gem
 		}
 		else throw (new Error ('there is a gem at this position, already'))
