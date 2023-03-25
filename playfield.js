@@ -1,22 +1,24 @@
-import { hyperIter, elem } from "./tools.js"
+import { hyperIter } from "./tools.js"
+import { ElementWrapper } from "./element.js"
 import { Gem } from "./gem.js"
 
-export class Playfield {
+export class Playfield extends ElementWrapper {
 	constructor ({
 		size = [12, 6],
 		colors = 4
-	}) {Object.assign (this, {
-		element: elem ({
+	}) {
+		super ({
 			tag: 'svg', svg: true, cls: 'playfield',
 			attr: {
 				viewBox: "0 0 " + size[1] + ' ' + size[0]
 			},
 			cssVar: { colors },
-			mixin: { ob: this }
-		}),
-		gems: new Array (size[0] * size [1]),
-		size, colors
-	})}
+		})
+		Object.assign (this, {
+			gems: new Array (size[0] * size [1]),
+			size, colors
+		}
+	)}
 	pos2idx ({y, x}) { return y + this.size [0] * x }
 	idx2pos (idx) { return {
 		y: idx % this.size [0],

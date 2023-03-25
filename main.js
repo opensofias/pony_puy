@@ -1,4 +1,3 @@
-import { elem, hyperIter } from "./tools.js"
 import { generateBlobStyles } from "./style.js"
 import { Playfield } from "./playfield.js";
 
