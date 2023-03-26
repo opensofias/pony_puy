@@ -11,22 +11,22 @@ export class ElementWrapper {
 		cls = '', id= '',
 		content = [], mixin = {},
 	} = {}) {
-		const result = document.createElementNS (types[type], tag)
+		this.element = Object.assign (
+			document.createElementNS (types[type], tag),
+			{wrapper: this}, mixin
+		)
 
-		for (const name in attr) result.setAttribute(name, attr[name])
-		for (const name in style) result.style.setProperty(name, style[name])
-		for (const name in cssVar) result.style.setProperty('--' + name, cssVar[name])
-		cls && cls.split(' ').forEach (x => result.classList.add (x))
-		id && (result.id = id)
+		Object.assign (this, {attributes: attr, styles: style, cssVars: cssVar})
+
+		cls && cls.split(' ').forEach (x => this.element.classList.add (x))
+		id && (this.element.id = id)
 
 		void (type =>
 			['string', 'number'].includes (type) ?
-				result.innerText = content :
+			this.element.innerText = content :
 			type == 'object' && [content].flat ()
-				.forEach(contEl => result.appendChild(contEl))
+				.forEach(contEl => this.element.appendChild(contEl))
 		) (typeof content)
-
-		this.element = Object.assign (result, mixin, {wrapper: this})
 	}
 	get attributes() {
 		return [...this.element.attributes].reduce((result, {name, value}) =>
