@@ -4,7 +4,7 @@ export class ElementWrapper {
 		attr = {}, style = {}, cssVar = {},
 		cls = '', id= '',
 		content = [], mixin = {},
-	}) {
+	} = {}) {
 		const result = svg ?
 			document.createElementNS ('http://www.w3.org/2000/svg', tag) :
 			document.createElement (tag)

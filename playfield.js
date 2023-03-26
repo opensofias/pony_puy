@@ -6,7 +6,7 @@ export class Playfield extends ElementWrapper {
 	constructor ({
 		size = [12, 6],
 		colors = 4
-	}) {
+	} = {}) {
 		super ({
 			tag: 'svg', svg: true, cls: 'playfield',
 			attr: {
@@ -35,7 +35,7 @@ export class Playfield extends ElementWrapper {
 		}
 		else throw (new Error ('there is a gem at this position, already'))
 	}
-	fill ({color = 'random'}) {
+	fill ({color = 'random'} = {}) {
 		hyperIter (this.size, ([y, x]) => this.newGem ({y, x, color}))
 		return this
 	}
