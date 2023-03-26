@@ -7,7 +7,7 @@ const types = {
 export class ElementWrapper {
 	constructor({
 		tag = 'div', type = 'html',
-		attr = {}, style = {}, cssVar = {},
+		attrs = {}, styles = {}, cssVars = {},
 		cls = '', id= '',
 		content = [], mixin = {},
 	} = {}) {
@@ -16,7 +16,7 @@ export class ElementWrapper {
 			{wrapper: this}, mixin
 		)
 
-		Object.assign (this, {attributes: attr, styles: style, cssVars: cssVar})
+		Object.assign (this, {attrs, styles, cssVars})
 
 		cls && cls.split(' ').forEach (x => this.element.classList.add (x))
 		id && (this.element.id = id)
@@ -28,12 +28,12 @@ export class ElementWrapper {
 				.forEach(contEl => this.element.appendChild(contEl))
 		) (typeof content)
 	}
-	get attributes() {
+	get attrs() {
 		return [...this.element.attributes].reduce((result, {name, value}) =>
 			({[name] : value, ...result})
 		, {});
 	}
-	set attributes(attrs) {
+	set attrs(attrs) {
 		for (const name in attrs)
 			this.element.setAttribute(name, attrs[name]);
 	}
