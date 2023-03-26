@@ -36,9 +36,9 @@ export class ElementWrapper {
 		, {});
 	}
 	set attributes(attrs) {
-		for (const name in attrs) {
+		for (const name in attrs)
 			this.element.setAttribute(name, attrs[name]);
-		}
+	}
 	}
 }
 
