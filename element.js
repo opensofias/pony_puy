@@ -1,13 +1,17 @@
+const types = {
+	html: 'http://www.w3.org/1999/xhtml',
+	svg: 'http://www.w3.org/2000/svg',
+	mathMl: 'http://www.w3.org/1998/Math/MathML'
+}
+
 export class ElementWrapper {
 	constructor({
-		tag = 'div', svg = false,
+		tag = 'div', type = 'html',
 		attr = {}, style = {}, cssVar = {},
 		cls = '', id= '',
 		content = [], mixin = {},
 	} = {}) {
-		const result = svg ?
-			document.createElementNS ('http://www.w3.org/2000/svg', tag) :
-			document.createElement (tag)
+		const result = document.createElementNS (types[type], tag)
 
 		for (const name in attr) result.setAttribute(name, attr[name])
 		for (const name in style) result.style.setProperty(name, style[name])
