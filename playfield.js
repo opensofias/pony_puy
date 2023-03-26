@@ -8,7 +8,7 @@ export class Playfield extends ElementWrapper {
 		colors = 4
 	} = {}) {
 		super ({
-			tag: 'svg', svg: true, cls: 'playfield',
+			tag: 'svg', type: 'svg', cls: 'playfield',
 			attr: {
 				viewBox: "0 0 " + size[1] + ' ' + size[0]
 			},

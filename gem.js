@@ -5,7 +5,7 @@ const directions = ['top', 'right', 'bottom', 'left']
 export class Gem extends ElementWrapper {
 	constructor ({y, x, color}) {
 		super ({
-			tag: 'path', svg: true, cls: 'gem',
+			tag: 'path', type: 'svg', cls: 'gem',
 			cssVar: {
 				x, y,
 				color: color == 'random' ?
