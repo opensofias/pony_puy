@@ -40,13 +40,9 @@ export class ElementWrapper {
 			this.element.setAttribute(name, attrs[name]);
 	}
 	get styles () {
-		const styleObj = {};
-		for (let i = 0; i < this.element.style.length; i++) {
-			const propName = this.element.style[i];
-			const propValue = this.element.style.getPropertyValue(propName);
-			styleObj[propName] = propValue;
-		}
-		return styleObj;
+		return [...this.element.style].reduce ((result, prop) =>
+			({[prop] : this.element.style.getPropertyValue (prop), ...result}),
+		{})
 	}
 	set styles (styles) {
 		for (const name in styles)
