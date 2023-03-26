@@ -30,11 +30,22 @@ export class ElementWrapper {
 	setCssVar(prop, val) {
 		this.style.setProperty('--' + prop, val);
 	}
+	get attributes() {
+		return Array.from(this.element.attributes).reduce((result, attr) => {
+			result[attr.name] = attr.value;
+			return result;
+		}, {});
+	}
+	set attributes(attrs) {
+		for (const name in attrs) {
+			this.element.setAttribute(name, attrs[name]);
+		}
+	}
 }
 
 // create getters for properties of the element, the colon siginifies a shorthand
 [
-	'style', 'getAttribute', 'setAttribute', 'attributes',
+	'style',
 	'classes:classList', 'parent:parentElement',
 	'next:nextElementSibling', 'prev:previousElementSibling'
 ].map (x => x.split (':')).forEach(prop =>
