@@ -24,12 +24,6 @@ export class ElementWrapper {
 
 		this.element = Object.assign (result, mixin, {wrapper: this})
 	}
-	getCssVar(prop) {
-		return this.style.getPropertyValue('--' + prop);
-	}
-	setCssVar(prop, val) {
-		this.style.setProperty('--' + prop, val);
-	}
 	get attributes() {
 		return [...this.element.attributes].reduce((result, {name, value}) =>
 			({[name] : value, ...result})
