@@ -6,7 +6,7 @@ export class Gem extends ElementWrapper {
 	constructor ({y, x, color}) {
 		super ({
 			tag: 'path', type: 'svg', cls: 'gem',
-			cssVar: {
+			cssVars: {
 				x, y,
 				color: color == 'random' ?
 					Math.floor(Math.random() * this.colors) :

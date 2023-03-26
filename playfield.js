@@ -9,10 +9,10 @@ export class Playfield extends ElementWrapper {
 	} = {}) {
 		super ({
 			tag: 'svg', type: 'svg', cls: 'playfield',
-			attr: {
+			attrs: {
 				viewBox: "0 0 " + size[1] + ' ' + size[0]
 			},
-			cssVar: { colors },
+			cssVars: { colors },
 		})
 		Object.assign (this, {
 			gems: new Array (size[0] * size [1]),
