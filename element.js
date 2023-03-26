@@ -31,10 +31,9 @@ export class ElementWrapper {
 		this.style.setProperty('--' + prop, val);
 	}
 	get attributes() {
-		return Array.from(this.element.attributes).reduce((result, attr) => {
-			result[attr.name] = attr.value;
-			return result;
-		}, {});
+		return [...this.element.attributes].reduce((result, {name, value}) =>
+			({[name] : value, ...result})
+		, {});
 	}
 	set attributes(attrs) {
 		for (const name in attrs) {
