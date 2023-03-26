@@ -23,7 +23,7 @@ export class ElementWrapper {
 
 		void (type =>
 			['string', 'number'].includes (type) ?
-			this.element.innerText = content :
+			this.innerText = content :
 			type == 'object' && [content].flat ()
 				.forEach(contEl => this.element.appendChild(contEl))
 		) (typeof content)
@@ -57,7 +57,6 @@ export class ElementWrapper {
 		for (const name in styles)
 			this.element.style.setProperty('--' + name, styles[name])
 	}
-	get id () {return this.element.id} set id (id) {this.element.id = id}
 	addClasses (classList) {
 		classList.split(' ').forEach (x => this.classes.add (x))
 	}
@@ -74,4 +73,13 @@ export class ElementWrapper {
 	Object.defineProperty(ElementWrapper.prototype, prop[0], {
 		get () { return this.element[prop[1] ?? prop [0]] },
 	})
-)
+);
+// getters and setters for mutable element properties
+[
+	'id', 'innerText'
+].map (x => x.split (':')).forEach(prop =>
+	Object.defineProperty(ElementWrapper.prototype, prop[0], {
+		get () { return this.element[prop[1] ?? prop [0]] },
+		set (val) { this.element[prop[1] ?? prop [0]] = val }
+	})
+);
