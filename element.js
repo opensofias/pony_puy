@@ -48,11 +48,21 @@ export class ElementWrapper {
 		for (const name in styles)
 			this.element.style.setProperty(name, styles[name])
 	}
+	get cssVars () {
+		return [...this.element.style].reduce ((result, prop) =>
+			prop.startsWith ('--') ?
+				({[prop.slice (2)] : this.element.style.getPropertyValue (prop), ...result}):
+				result,
+		{})
+	}
+	set cssVars (styles) {
+		for (const name in styles)
+			this.element.style.setProperty('--' + name, styles[name])
+	}
 }
 
 // create getters for properties of the element, the colon siginifies a shorthand
 [
-	'style',
 	'classes:classList', 'parent:parentElement',
 	'next:nextElementSibling', 'prev:previousElementSibling'
 ].map (x => x.split (':')).forEach(prop =>
