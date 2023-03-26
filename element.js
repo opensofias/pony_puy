@@ -18,8 +18,8 @@ export class ElementWrapper {
 
 		Object.assign (this, {attrs, styles, cssVars})
 
-		cls && cls.split(' ').forEach (x => this.element.classList.add (x))
-		id && (this.element.id = id)
+		cls && (this.addClasses (cls))
+		id && (this.id = id)
 
 		void (type =>
 			['string', 'number'].includes (type) ?
@@ -56,6 +56,13 @@ export class ElementWrapper {
 	set cssVars (styles) {
 		for (const name in styles)
 			this.element.style.setProperty('--' + name, styles[name])
+	}
+	get id () {return this.element.id} set id (id) {this.element.id = id}
+	addClasses (classList) {
+		classList.split(' ').forEach (x => this.classes.add (x))
+	}
+	removeClasses (classList) {
+		classList.split(' ').forEach (x => this.classes.remove (x))
 	}
 }
 
