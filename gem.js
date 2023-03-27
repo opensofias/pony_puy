@@ -10,7 +10,7 @@ export class Slot extends ElementWrapper {
 		})
 	}
 	createGem (color) {
-		const newGem = new Gem ({color, x: this.x, x: this.y})
+		const newGem = new Gem ({color, x: this.x, y: this.y})
 		this.element.replaceWith (newGem.element)
 		return newGem
 	}
@@ -38,7 +38,7 @@ export class Gem extends ElementWrapper {
 		{}
 	)}
 	destroyGem () {
-		const newSlot = new Slot ({x: this.x, x: this.y})
+		const newSlot = new Slot ({x: this.x, y: this.y})
 		this.element.replaceWith (newSlot.element)
 		return newSlot
 	}
