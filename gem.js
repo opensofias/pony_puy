@@ -5,6 +5,7 @@ const directions = ['top', 'right', 'bottom', 'left']
 class MaybeGem extends ElementWrapper {
 	constructor (...params) {super (...params)}
 	get position () {return {x: this.x, y: this.y}}
+	set position ({x, y}) {Object.assign (this, {x, y})}
 }
 adoptCssVars (MaybeGem, 'x y')
 
