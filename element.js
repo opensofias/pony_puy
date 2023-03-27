@@ -21,7 +21,7 @@ export class ElementWrapper {
 		cls && (this.addClasses (cls))
 		id && (this.id = id)
 
-		content && this.append (...[content].flat())
+		content && this.element.append (...[content].flat())
 	}
 	get attrs() {
 		return [...this.element.attributes].reduce((result, {name, value}) =>
