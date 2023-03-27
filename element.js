@@ -82,3 +82,11 @@ export class ElementWrapper {
 		set (val) { this.element[prop[1] ?? prop [0]] = val }
 	})
 );
+
+export const adoptCssVars = (targetClass, vars) =>
+vars.split(' ').forEach(prop =>
+	Object.defineProperty(targetClass.prototype, prop, {
+		get () {return Number.parseInt (this.cssVars [prop])},
+		set (val) { this.cssVars = {[prop]: val} }
+	})
+)
