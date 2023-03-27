@@ -2,7 +2,13 @@ import { ElementWrapper, adoptCssVars } from "./element.js";
 
 const directions = ['top', 'right', 'bottom', 'left']
 
-export class Slot extends ElementWrapper {
+class MaybeGem extends ElementWrapper {
+	constructor (...params) {super (...params)}
+	get position () {return {x: this.x, y: this.y}}
+}
+adoptCssVars (MaybeGem, 'x y')
+
+export class Slot extends MaybeGem {
 	constructor ({y, x}) {
 		super ({
 			tag: 'g', type: 'svg', cls: 'slot',
@@ -10,14 +16,14 @@ export class Slot extends ElementWrapper {
 		})
 	}
 	createGem (color) {
-		const newGem = new Gem ({color, x: this.x, y: this.y})
+		const newGem = new Gem ({color, ...this.position})
 		this.element.replaceWith (newGem.element)
 		return newGem
 	}
 }
-adoptCssVars (Slot, 'x y')
 
-export class Gem extends ElementWrapper {
+
+export class Gem extends MaybeGem {
 	constructor ({y, x, color}) {
 		super ({
 			tag: 'path', type: 'svg', cls: 'gem',
@@ -38,9 +44,9 @@ export class Gem extends ElementWrapper {
 		{}
 	)}
 	destroyGem () {
-		const newSlot = new Slot ({x: this.x, y: this.y})
+		const newSlot = new Slot (this.position)
 		this.element.replaceWith (newSlot.element)
 		return newSlot
 	}
 }
-adoptCssVars (Gem, 'x y color')
+adoptCssVars (Gem, 'color')
