@@ -2,6 +2,16 @@ import { ElementWrapper, adoptCssVars } from "./element.js";
 
 const directions = ['top', 'right', 'bottom', 'left']
 
+export class Slot extends ElementWrapper {
+	constructor ({y, x}) {
+		super ({
+			tag: 'g', type: 'svg', cls: 'slot',
+			cssVars: {x, y},
+		})
+	}
+}
+adoptCssVars (Slot, 'x y')
+
 export class Gem extends ElementWrapper {
 	constructor ({y, x, color}) {
 		super ({
