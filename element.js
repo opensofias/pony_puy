@@ -68,7 +68,11 @@ export class ElementWrapper {
 // create getters for properties of the element, the colon siginifies a shorthand
 [
 	'classes:classList', 'parent:parentElement',
-	'next:nextElementSibling', 'prev:previousElementSibling'
+	'next:nextElementSibling', 'prev:previousElementSibling',
+	'appendChild', 'removeChild', 'replaceChild', 'contains',
+	'children', 'firstChild', 'lastChild',
+	'prepend', 'append', 'after', 'before',
+	'isEqualNode', 'isSameNode',
 ].map (x => x.split (':')).forEach(prop =>
 	Object.defineProperty(ElementWrapper.prototype, prop[0], {
 		get () { return this.element[prop[1] ?? prop [0]] },
