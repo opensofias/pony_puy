@@ -67,7 +67,7 @@ export class ElementWrapper {
 	'appendChild', 'removeChild', 'replaceChild', 'contains',
 	'children', 'firstChild', 'lastChild',
 	'prepend', 'append', 'after', 'before',
-	'isEqualNode', 'isSameNode',
+	'isEqualNode', 'isSameNode', 'replaceWith'
 ].map (x => x.split (':')).forEach(prop =>
 	Object.defineProperty(ElementWrapper.prototype, prop[0], {
 		get () { return this.element[prop[1] ?? prop [0]] },
