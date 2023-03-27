@@ -9,6 +9,11 @@ export class Slot extends ElementWrapper {
 			cssVars: {x, y},
 		})
 	}
+	createGem (color) {
+		const newGem = new Gem ({color, x: this.x, x: this.y})
+		this.element.replaceWith (newGem.element)
+		return newGem
+	}
 }
 adoptCssVars (Slot, 'x y')
 
@@ -32,5 +37,10 @@ export class Gem extends ElementWrapper {
 			({...result, [direction]: this.classes.contains ('blob-' + direction)}),
 		{}
 	)}
+	destroyGem () {
+		const newSlot = new Slot ({x: this.x, x: this.y})
+		this.element.replaceWith (newSlot.element)
+		return newSlot
+	}
 }
 adoptCssVars (Gem, 'x y color')
