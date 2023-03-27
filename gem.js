@@ -1,4 +1,4 @@
-import { ElementWrapper } from "./element.js";
+import { ElementWrapper, adoptCssVars } from "./element.js";
 
 const directions = ['top', 'right', 'bottom', 'left']
 
