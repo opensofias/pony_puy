@@ -1,6 +1,6 @@
 import { hyperIter } from "./tools.js"
 import { ElementWrapper } from "./element.js"
-import { Gem } from "./gem.js"
+import { Gem, Slot } from "./gem.js"
 
 export class Playfield extends ElementWrapper {
 	constructor ({
@@ -13,6 +13,7 @@ export class Playfield extends ElementWrapper {
 				viewBox: "0 0 " + wide + ' ' + high
 			},
 			cssVars: { colors },
+			content: hyperIter ([high, wide], ([y, x]) => (new Slot ({y, x})).element)
 		})
 		Object.assign (this, {
 			gems: new Array (high * wide),
@@ -24,6 +25,9 @@ export class Playfield extends ElementWrapper {
 		y: idx % this.high,
 		x: Math.floor (idx / this.high)
 	}}
+	getPosition (pos) {
+		return this.element.children[this.pos2idx (pos)].wrapper
+	}
 	newGem ({y, x, color}) {
 		color == 'random' && (color = Math.floor(Math.random() * this.colors))
 		const pos = this.pos2idx ({y, x})
@@ -36,7 +40,12 @@ export class Playfield extends ElementWrapper {
 		else throw (new Error ('there is a gem at this position, already'))
 	}
 	fill ({color = 'random'} = {}) {
-		hyperIter ([this.high, this.wide], ([y, x]) => this.newGem ({y, x, color}))
+		[...this.element.children].forEach (({wrapper}) =>
+			wrapper instanceof Slot && wrapper.createGem (
+				color == 'random' ?
+					Math.floor(Math.random() * this.colors) :
+					color
+			))
 		return this
 	}
 }
