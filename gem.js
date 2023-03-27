@@ -23,10 +23,4 @@ export class Gem extends ElementWrapper {
 		{}
 	)}
 }
-
-['x', 'y', 'color'].forEach(prop =>
-	Object.defineProperty(Gem.prototype, prop, {
-		get () {return Number.parseInt (this.cssVars [prop])},
-		set (val) { this.cssVars = {[prop]: val} }
-	})
-)
+adoptCssVars (Gem, 'x y color')
