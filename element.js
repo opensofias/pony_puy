@@ -9,7 +9,7 @@ export class ElementWrapper {
 		tag = 'div', type = 'html',
 		attrs = {}, styles = {}, cssVars = {},
 		cls = '', id= '',
-		content = [], mixin = {},
+		content, mixin = {},
 	} = {}) {
 		this.element = Object.assign (
 			document.createElementNS (types[type], tag),
@@ -21,7 +21,7 @@ export class ElementWrapper {
 		cls && (this.addClasses (cls))
 		id && (this.id = id)
 
-		this.append (...[content].flat())
+		content && this.append (...[content].flat())
 	}
 	get attrs() {
 		return [...this.element.attributes].reduce((result, {name, value}) =>
