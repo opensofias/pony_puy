@@ -28,12 +28,7 @@ export class Gem extends MaybeGem {
 	constructor ({y, x, color}) {
 		super ({
 			tag: 'path', type: 'svg', cls: 'gem',
-			cssVars: {
-				x, y,
-				color: color == 'random' ?
-					Math.floor(Math.random() * this.colors) :
-					color
-			},
+			cssVars: {x, y, color},
 		})
 	}
 	set blob (sides) {
