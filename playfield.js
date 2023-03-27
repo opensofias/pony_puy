@@ -16,7 +16,6 @@ export class Playfield extends ElementWrapper {
 			content: hyperIter ([high, wide], ([y, x]) => (new Slot ({y, x})).element)
 		})
 		Object.assign (this, {
-			gems: new Array (high * wide),
 			high, wide, colors
 		}
 	)}
@@ -27,17 +26,6 @@ export class Playfield extends ElementWrapper {
 	}}
 	getPosition (pos) {
 		return this.element.children[this.pos2idx (pos)].wrapper
-	}
-	newGem ({y, x, color}) {
-		color == 'random' && (color = Math.floor(Math.random() * this.colors))
-		const pos = this.pos2idx ({y, x})
-		if (!this.gems [pos]) {
-			const gem = new Gem ({ x, y, color })
-			this.gems [pos] = gem
-			this.element.appendChild (gem.element)
-			return gem
-		}
-		else throw (new Error ('there is a gem at this position, already'))
 	}
 	fill ({color = 'random'} = {}) {
 		[...this.element.children].forEach (({wrapper}) =>
