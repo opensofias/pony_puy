@@ -21,12 +21,7 @@ export class ElementWrapper {
 		cls && (this.addClasses (cls))
 		id && (this.id = id)
 
-		void (type =>
-			['string', 'number'].includes (type) ?
-			this.innerText = content :
-			type == 'object' && [content].flat ()
-				.forEach(contEl => this.element.appendChild(contEl))
-		) (typeof content)
+		this.append (...[content].flat())
 	}
 	get attrs() {
 		return [...this.element.attributes].reduce((result, {name, value}) =>
