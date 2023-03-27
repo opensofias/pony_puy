@@ -4,25 +4,25 @@ import { Gem } from "./gem.js"
 
 export class Playfield extends ElementWrapper {
 	constructor ({
-		size = [12, 6],
+		high = 12, wide = 6,
 		colors = 4
 	} = {}) {
 		super ({
 			tag: 'svg', type: 'svg', cls: 'playfield',
 			attrs: {
-				viewBox: "0 0 " + size[1] + ' ' + size[0]
+				viewBox: "0 0 " + wide + ' ' + high
 			},
 			cssVars: { colors },
 		})
 		Object.assign (this, {
-			gems: new Array (size[0] * size [1]),
-			size, colors
+			gems: new Array (high * wide),
+			high, wide, colors
 		}
 	)}
-	pos2idx ({y, x}) { return y + this.size [0] * x }
+	pos2idx ({y, x}) { return y + this.high * x }
 	idx2pos (idx) { return {
-		y: idx % this.size [0],
-		x: Math.floor (idx / this.size [0])
+		y: idx % this.high,
+		x: Math.floor (idx / this.high)
 	}}
 	newGem ({y, x, color}) {
 		color == 'random' && (color = Math.floor(Math.random() * this.colors))
@@ -36,7 +36,7 @@ export class Playfield extends ElementWrapper {
 		else throw (new Error ('there is a gem at this position, already'))
 	}
 	fill ({color = 'random'} = {}) {
-		hyperIter (this.size, ([y, x]) => this.newGem ({y, x, color}))
+		hyperIter ([this.high, this.wide], ([y, x]) => this.newGem ({y, x, color}))
 		return this
 	}
 }
