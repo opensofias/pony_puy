@@ -27,6 +27,14 @@ export class Playfield extends ElementWrapper {
 	getPosition (pos) {
 		return this.element.children[this.pos2idx (pos)].wrapper
 	}
+	swap (...positions) {
+		const wrappers = positions.map (x => this.getPosition (x))
+		const placeholders = [0,0].map (() => document.createElementNS ('http://www.w3.org/2000/svg', 'g'))
+		wrappers.forEach ((wrp, idx) => wrp.element.after(placeholders [idx]))
+		placeholders.forEach ((ph, idx) => ph.replaceWith (wrappers [1 - idx].element))
+		wrappers[0].position = positions[1]
+		wrappers[1].position = positions[0]
+	}
 	fill ({color = 'random'} = {}) {
 		[...this.element.children].forEach (({wrapper}) =>
 			wrapper instanceof Slot && wrapper.createGem (
