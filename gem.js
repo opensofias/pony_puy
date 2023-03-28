@@ -50,5 +50,14 @@ export class Gem extends MaybeGem {
 		this.element.replaceWith (newSlot.element)
 		return newSlot
 	}
+	updateBlob () {
+		this.blob = Object.entries(directions).reduce ((blob, [label, vec]) => 
+			({...blob, [label]: this.field.getByClass ({
+				x: this.x + vec.dx,
+				y: this.y + vec.dy,
+				color: this.color
+			}) && true})
+		, {})
+	}
 }
 getVarSetClass (Gem, 'color')
