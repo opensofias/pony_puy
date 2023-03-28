@@ -26,12 +26,16 @@ export class Playfield extends ElementWrapper {
 		y: idx % this.high,
 		x: Math.floor (idx / this.high)
 	}}
-	getPosition ({x, y}) {
-		return this.element.querySelector (`.x${x}.y${y}`).wrapper
+	getByClass (classes, all) {
+		const classQuery = Object.entries (classes).map (x => '.' + x.join('')).join('')
+		if (!all)
+			return this.element.querySelector (classQuery)?.wrapper
+		else
+			return [...this.element.querySelectorAll (classQuery)].map (x => x.wrapper)
 	}
 	swap (...positions) {
 		positions
-			.map (pos => this.getPosition (pos))
+			.map (pos => this.getByClass (pos))
 			.forEach ((thing, idx) => thing.position = positions[1 - idx])
 	}
 	fill ({color = 'random'} = {}) {
