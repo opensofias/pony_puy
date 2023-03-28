@@ -17,4 +17,5 @@ export const generateBlobStyles = () => {
 	})
 
 	document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet]
+	return sheet
 }
