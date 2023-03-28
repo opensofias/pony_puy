@@ -6,6 +6,12 @@ class MaybeGem extends ElementWrapper {
 	constructor (...params) {super (...params)}
 	get position () {return {x: this.x, y: this.y}}
 	set position ({x, y}) {Object.assign (this, {x, y})}
+	getNeighbor ({dx, dy}) {
+		this.field.getByClass ({x: this.x + dx, y: this.y + dy})
+	}
+	get field () {
+		return this.element.parentElement.wrapper
+	}
 }
 getVarSetClass (MaybeGem, 'x y')
 
