@@ -22,10 +22,14 @@ export const generateBlobStyles = () => {
 
 export const generateGemClasses = ({wide, high, colors}) => {
 	const sheet = new CSSStyleSheet()
-	hyperIter ([wide, high, colors] , ([x, y, c]) =>{
+	hyperIter ([wide] , ([x]) => {
 		sheet.insertRule(`.x${x} { --x:${x} }`, sheet.cssRules.length)
+	})
+	hyperIter ([high] , ([y]) => {
 		sheet.insertRule(`.y${y} { --y:${y} }`, sheet.cssRules.length)
-		sheet.insertRule(`.c${c} { --color:${c} }`, sheet.cssRules.length)
+	})
+	hyperIter ([colors] , ([color]) => {
+		sheet.insertRule(`.color${color} { --color:${color} }`, sheet.cssRules.length)
 	})
 	document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet]
 	return sheet
