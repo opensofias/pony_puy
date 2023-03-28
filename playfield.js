@@ -1,6 +1,7 @@
 import { hyperIter } from "./tools.js"
 import { ElementWrapper } from "./element.js"
 import { Gem, Slot } from "./gem.js"
+import { generateGemClasses } from "./style.js"
 
 export class Playfield extends ElementWrapper {
 	constructor ({
@@ -18,22 +19,20 @@ export class Playfield extends ElementWrapper {
 		Object.assign (this, {
 			high, wide, colors
 		})
+		generateGemClasses ({wide, high, colors})
 	}
 	pos2idx ({y, x}) { return y + this.high * x }
 	idx2pos (idx) { return {
 		y: idx % this.high,
 		x: Math.floor (idx / this.high)
 	}}
-	getPosition (pos) {
-		return this.element.children[this.pos2idx (pos)].wrapper
+	getPosition ({x, y}) {
+		return this.element.querySelector (`.x${x}.y${y}`).wrapper
 	}
 	swap (...positions) {
-		const wrappers = positions.map (x => this.getPosition (x))
-		const placeholders = [0,0].map (() => document.createElementNS ('http://www.w3.org/2000/svg', 'g'))
-		wrappers.forEach ((wrp, idx) => wrp.element.after(placeholders [idx]))
-		placeholders.forEach ((ph, idx) => ph.replaceWith (wrappers [1 - idx].element))
-		wrappers[0].position = positions[1]
-		wrappers[1].position = positions[0]
+		positions
+			.map (pos => this.getPosition (pos))
+			.forEach ((thing, idx) => thing.position = positions[1 - idx])
 	}
 	fill ({color = 'random'} = {}) {
 		[...this.element.children].forEach (({wrapper}) =>
