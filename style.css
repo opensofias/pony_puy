@@ -32,6 +32,7 @@ body {
 	--gemSat: .75;
 	--gemLit: .5;
 	d: path('M-7,0 L-5,5 L0,7 L5,5 L7,0 L5,-5 L0,-7 L-5,-5 Z');
+	mix-blend-mode: lighten;
 }
 
 .gem:hover {
