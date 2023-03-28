@@ -17,8 +17,8 @@ export class Playfield extends ElementWrapper {
 		})
 		Object.assign (this, {
 			high, wide, colors
-		}
-	)}
+		})
+	}
 	pos2idx ({y, x}) { return y + this.high * x }
 	idx2pos (idx) { return {
 		y: idx % this.high,
