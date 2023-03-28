@@ -19,3 +19,14 @@ export const generateBlobStyles = () => {
 	document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet]
 	return sheet
 }
+
+export const generateGemClasses = ({wide, high, colors}) => {
+	const sheet = new CSSStyleSheet()
+	hyperIter ([wide, high, colors] , ([x, y, c]) =>{
+		sheet.insertRule(`.x${x} { --x:${x} }`, sheet.cssRules.length)
+		sheet.insertRule(`.y${y} { --y:${y} }`, sheet.cssRules.length)
+		sheet.insertRule(`.c${c} { --color:${c} }`, sheet.cssRules.length)
+	})
+	document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet]
+	return sheet
+}
