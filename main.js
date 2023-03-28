@@ -5,4 +5,5 @@ const playfield = new Playfield ();
 window.playfield = playfield
 document.body.appendChild(playfield.element);
 playfield.fill()
+playfield.blobAll()
 generateBlobStyles ()
