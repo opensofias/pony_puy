@@ -1,6 +1,8 @@
 import { ElementWrapper, getVarSetClass } from "./element.js";
 
-const directions = ['top', 'right', 'bottom', 'left']
+const directions = {
+	top: {dy: -1, dx: 0}, right: {dy: 1, dx: 0}, bottom: {dy: 1, dx: 0}, left: {dy: -1, dx: 0}
+}
 
 class MaybeGem extends ElementWrapper {
 	constructor (...params) {super (...params)}
@@ -39,7 +41,7 @@ export class Gem extends MaybeGem {
 		for (const side in sides)
 			this.classes [sides [side] ? 'add' : 'remove'] ('blob-' + side)
 	}
-	get blob () {return directions.reduce ((result, direction) =>
+	get blob () {return Object.keys (directions).reduce ((result, direction) =>
 			({...result, [direction]: this.classes.contains ('blob-' + direction)}),
 		{}
 	)}
