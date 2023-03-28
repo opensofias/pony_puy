@@ -2,7 +2,7 @@ import { hyperIter } from "./tools.js"
 
 export const generateBlobStyles = () => {
 	const sheet = new CSSStyleSheet()
-	const directions = ['top', 'right', 'bottom', 'left']
+	const directions = ['up', 'right', 'down', 'left']
 
 	hyperIter ([2, 2, 2, 2], vec => {
 

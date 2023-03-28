@@ -1,7 +1,7 @@
 import { ElementWrapper, getVarSetClass } from "./element.js";
 
 const directions = {
-	top: {dy: -1, dx: 0}, right: {dy: 1, dx: 0}, bottom: {dy: 1, dx: 0}, left: {dy: -1, dx: 0}
+	up: {dy: -1, dx: 0}, right: {dy: 0, dx: 1}, down: {dy: 1, dx: 0}, left: {dy: 0, dx: -1}
 }
 
 class MaybeGem extends ElementWrapper {
