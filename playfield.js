@@ -48,6 +48,6 @@ export class Playfield extends ElementWrapper {
 		return this
 	}
 	blobAll () {
-		[...this.children].forEach (x => x.wrapper.updateBlob())
+		for (const {wrapper} of this.children) wrapper.updateBlob()
 	}
 }
