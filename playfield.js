@@ -39,12 +39,13 @@ export class Playfield extends ElementWrapper {
 			.forEach ((thing, idx) => thing.position = positions[1 - idx])
 	}
 	fill ({color = 'random'} = {}) {
-		[...this.element.children].forEach (({wrapper}) =>
+		for (const {wrapper} of this.children) {
 			wrapper instanceof Slot && wrapper.createGem (
 				color == 'random' ?
 					Math.floor(Math.random() * this.colors) :
 					color
-			))
+			)
+		}
 		return this
 	}
 	blobAll () {
