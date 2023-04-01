@@ -83,7 +83,8 @@ export class ElementWrapper {
 [
 	'appendChild', 'removeChild', 'replaceChild', 'contains',
 	'prepend', 'append', 'after', 'before',
-	'isEqualNode', 'isSameNode', 'replaceWith'
+	'isEqualNode', 'isSameNode', 'replaceWith',
+	'querySelector', 'querySelectorAll',
 ].map (x => x.split (':')).forEach(method =>
 	Object.assign (ElementWrapper.prototype,
 		{[method] (...params) {return this.element[method] (params)}}
