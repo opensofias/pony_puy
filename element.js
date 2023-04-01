@@ -64,10 +64,7 @@ export class ElementWrapper {
 [
 	'classes:classList', 'parent:parentElement',
 	'next:nextElementSibling', 'prev:previousElementSibling',
-	'appendChild', 'removeChild', 'replaceChild', 'contains',
 	'children', 'firstChild', 'lastChild',
-	'prepend', 'append', 'after', 'before',
-	'isEqualNode', 'isSameNode', 'replaceWith'
 ].map (x => x.split (':')).forEach(prop =>
 	Object.defineProperty(ElementWrapper.prototype, prop[0], {
 		get () { return this.element[prop[1] ?? prop [0]] },
@@ -81,6 +78,16 @@ export class ElementWrapper {
 		get () { return this.element[prop[1] ?? prop [0]] },
 		set (val) { this.element[prop[1] ?? prop [0]] = val }
 	})
+);
+// adopt the elements methods, keeping them bound to the element
+[
+	'appendChild', 'removeChild', 'replaceChild', 'contains',
+	'prepend', 'append', 'after', 'before',
+	'isEqualNode', 'isSameNode', 'replaceWith'
+].map (x => x.split (':')).forEach(method =>
+	Object.assign (ElementWrapper.prototype,
+		{[method] (...params) {return this.element[method] (params)}}
+	)
 );
 
 export const getVarSetClass = (targetClass, vars) =>
