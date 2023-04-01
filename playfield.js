@@ -29,9 +29,9 @@ export class Playfield extends ElementWrapper {
 	getByClass (classes, all) {
 		const classQuery = Object.entries (classes).map (x => '.' + x.join('')).join('')
 		if (!all)
-			return this.element.querySelector (classQuery)?.wrapper
+			return this.querySelector (classQuery)?.wrapper
 		else
-			return [...this.element.querySelectorAll (classQuery)].map (x => x.wrapper)
+			return [...this.querySelectorAll (classQuery)].map (x => x.wrapper)
 	}
 	swap (...positions) {
 		positions
