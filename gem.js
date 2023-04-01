@@ -12,7 +12,7 @@ class MaybeGem extends ElementWrapper {
 		this.field.getByClass ({x: this.x + dx, y: this.y + dy})
 	}
 	get field () {
-		return this.parent.wrapper
+		return this.element.parentElement.wrapper
 	}
 }
 getVarSetClass (MaybeGem, 'x y')
@@ -25,7 +25,7 @@ export class Slot extends MaybeGem {
 	}
 	createGem (color) {
 		const newGem = new Gem ({color, ...this.position})
-		this.replaceWith (newGem.element)
+		this.element.replaceWith (newGem.element)
 		return newGem
 	}
 }
@@ -47,7 +47,7 @@ export class Gem extends MaybeGem {
 	)}
 	destroyGem () {
 		const newSlot = new Slot (this.position)
-		this.replaceWith (newSlot.element)
+		this.element.replaceWith (newSlot.element)
 		return newSlot
 	}
 	updateBlob () {
