@@ -25,7 +25,7 @@ export class Slot extends MaybeGem {
 	}
 	createGem (color) {
 		const newGem = new Gem ({color, ...this.position})
-		this.element.replaceWith (newGem.element)
+		this.replaceWith (newGem.element)
 		return newGem
 	}
 }
@@ -47,7 +47,7 @@ export class Gem extends MaybeGem {
 	)}
 	destroyGem () {
 		const newSlot = new Slot (this.position)
-		this.element.replaceWith (newSlot.element)
+		this.replaceWith (newSlot.element)
 		return newSlot
 	}
 	updateBlob () {
