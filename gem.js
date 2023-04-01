@@ -12,7 +12,7 @@ class MaybeGem extends ElementWrapper {
 		this.field.getByClass ({x: this.x + dx, y: this.y + dy})
 	}
 	get field () {
-		return this.element.parentElement.wrapper
+		return this.parent.wrapper
 	}
 }
 getVarSetClass (MaybeGem, 'x y')
