@@ -87,7 +87,7 @@ export class ElementWrapper {
 	'querySelector', 'querySelectorAll',
 ].map (x => x.split (':')).forEach(method =>
 	Object.assign (ElementWrapper.prototype,
-		{[method] (...params) {return this.element[method] (params)}}
+		{[method] (...params) {return this.element[method] (...params)}}
 	)
 );
 
