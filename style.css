@@ -39,7 +39,6 @@ body {
 	--gemZoom: 1.25;
 	--gemSat: .875;
 	--gemLit: .625;
-	z-index: 1;
 }
 
 /* mode for coding gem color in shape/angle for colorblind users etc */
