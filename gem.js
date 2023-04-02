@@ -59,5 +59,14 @@ export class Gem extends MaybeGem {
 			}) && true})
 		, {})
 	}
+	updateBlobAround () {
+		Object.values (directions).forEach (({dx, dy}) =>
+			this.field.getByClass ({
+				x: this.x + dx,
+				y: this.y + dy,
+			})?.updateBlob ()
+		)
+		this.updateBlob ()
+	}
 }
 getVarSetClass (Gem, 'color')
