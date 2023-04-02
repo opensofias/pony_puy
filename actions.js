@@ -1,6 +1,12 @@
+let draggedFrom
+
 export const actions = {
 	dragAndSwap : {
-		onmousedown (...params) {console.log (...params)},
-		onmouseup (...params) {console.log (...params)}
+		onmousedown (event) {
+			draggedFrom = playfield.screen2pos (event)
+		},
+		onmouseup (event) {
+			playfield.swap (draggedFrom, playfield.screen2pos (event))
+		}
 	}
 }
