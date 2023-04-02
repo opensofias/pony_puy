@@ -35,7 +35,7 @@ body {
 	mix-blend-mode: lighten;
 }
 
-.gem:hover {
+.gem.selected {
 	--gemZoom: 1.25;
 	--gemSat: .875;
 	--gemLit: .625;
