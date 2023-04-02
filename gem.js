@@ -51,10 +51,10 @@ export class Gem extends MaybeGem {
 		return newSlot
 	}
 	updateBlob () {
-		this.blob = Object.entries(directions).reduce ((blob, [label, vec]) => 
+		this.blob = Object.entries(directions).reduce ((blob, [label, {dx, dy}]) => 
 			({...blob, [label]: this.field.getByClass ({
-				x: this.x + vec.dx,
-				y: this.y + vec.dy,
+				x: this.x + dx,
+				y: this.y + dy,
 				color: this.color
 			}) && true})
 		, {})
