@@ -60,7 +60,9 @@ export class Playfield extends ElementWrapper {
 		].reduce ((result, [dimension, clientSize, fieldSize, clientPos]) => {
 			const origin = (clientSize - gemSize * fieldSize) / 2
 			return {...result, [dimension]:
-				Math.floor ((clientPos - origin) / gemSize)
+				Math.max (0, Math.min (fieldSize - 1, Math.floor (
+					(clientPos - origin) / gemSize
+				)))
 			}
 		}, {})
 	}
