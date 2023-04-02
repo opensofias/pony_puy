@@ -65,6 +65,7 @@ export class ElementWrapper {
 	'classes:classList', 'parent:parentElement',
 	'next:nextElementSibling', 'prev:previousElementSibling',
 	'children', 'firstChild', 'lastChild',
+	'clientHeight', 'clientLeft', 'clientTop', 'clientWidth',
 ].map (x => x.split (':')).forEach(prop =>
 	Object.defineProperty(ElementWrapper.prototype, prop[0], {
 		get () { return this.element[prop[1] ?? prop [0]] },
