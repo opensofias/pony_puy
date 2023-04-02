@@ -54,13 +54,14 @@ export class Playfield extends ElementWrapper {
 	screen2pos ({clientX, clientY}) {
 		const {clientHeight, clientWidth, high, wide} = this
 		const gemSize = Math.min (clientHeight / high, clientWidth / wide)
-		const origin = {
-			x: (clientWidth - gemSize * wide) / 2,
-			y: (clientHeight - gemSize * high) / 2,
-		}
-		return ({
-			x: Math.floor ((clientX - origin.x) / gemSize),
-			y: Math.floor ((clientY - origin.y) / gemSize),
-		})
+		return [
+			['x', clientWidth, wide, clientX],
+			['y', clientHeight, high, clientY],
+		].reduce ((result, [dimension, clientSize, fieldSize, clientPos]) => {
+			const origin = (clientSize - gemSize * fieldSize) / 2
+			return {...result, [dimension]:
+				Math.floor ((clientPos - origin) / gemSize)
+			}
+		}, {})
 	}
 }
