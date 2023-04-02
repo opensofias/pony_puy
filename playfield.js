@@ -34,9 +34,9 @@ export class Playfield extends ElementWrapper {
 			return [...this.querySelectorAll (classQuery)].map (x => x.wrapper)
 	}
 	swap (...positions) {
-		positions
-			.map (pos => this.getByClass (pos))
-			.forEach ((thing, idx) => thing.position = positions[1 - idx])
+		const things = positions.map (pos => this.getByClass (pos))
+		things.forEach ((thing, idx) => thing.position = positions[1 - idx])
+		things.forEach (thing => thing.updateBlobAround ())
 	}
 	fill ({color = 'random'} = {}) {
 		for (const {wrapper} of this.children) {
