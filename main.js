@@ -1,4 +1,4 @@
-import { generateBlobStyles } from "./style.js"
+import { generateBlobStyles, registerProps } from "./style.js"
 import { Playfield } from "./playfield.js";
 import { actions } from "./actions.js";
 
@@ -8,6 +8,7 @@ document.body.appendChild(playfield.element);
 playfield.fill()
 playfield.blobAll()
 generateBlobStyles ()
+registerProps ()
 
 // temporary colution for building drag&drop
 Object.assign (playfield.element, actions.dragAndSwap)

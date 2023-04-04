@@ -34,3 +34,20 @@ export const generateGemClasses = ({wide, high, colors}) => {
 	document.adoptedStyleSheets = [...document.adoptedStyleSheets, sheet]
 	return sheet
 }
+
+const cssProps = {
+	x: 0, y: 0, color: 0, colors: 1,
+	gemZoom: 1, gemRot: 0, gemSat: 0, gemLit: 0
+}
+
+export const registerProps = () => {
+	if (CSS.registerProperty)
+		for (const prop in cssProps)
+			CSS.registerProperty({
+				name: '--' + prop,
+				syntax: typeof cssProps [prop] == 'number' ? '<number>' : '*',
+				inherits: true,
+				initialValue: cssProps [prop],
+			})
+	else console.warn ('browser does not support registering custom properties')
+}
