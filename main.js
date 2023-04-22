@@ -1,6 +1,6 @@
 import { generateBlobStyles, registerProps } from "./style.js"
 import { Playfield } from "./playfield.js";
-import { actions } from "./actions.js";
+import { registerActions } from "./actions.js";
 
 const playfield = new Playfield ();
 window.playfield = playfield
@@ -10,5 +10,4 @@ playfield.blobAll()
 generateBlobStyles ()
 registerProps ()
 
-// temporary colution for building drag&drop
-Object.assign (playfield.element, actions.dragAndSwap)
+registerActions (playfield, 'dragAndSwap')
