@@ -3,11 +3,11 @@ let currentActionScheme
 
 export const actions = {
 	dragAndSwap : {
-		mousedown (event) {
+		pointerdown (event) {
 			draggedFrom = this.wrapper.screen2pos (event)
 			this.wrapper.getByClass (draggedFrom).addClasses ('selected')
 		},
-		mouseup (event) {
+		pointerup (event) {
 			this.wrapper.getByClass (draggedFrom).removeClasses ('selected')
 			this.wrapper.swap (draggedFrom, this.wrapper.screen2pos (event))
 		}
