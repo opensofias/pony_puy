@@ -1,13 +1,16 @@
-let draggedFrom
+const dragMap = new Map ()
 let currentActionScheme
 
 export const actions = {
 	dragAndSwap : {
 		pointerdown (event) {
-			draggedFrom = this.wrapper.screen2pos (event)
+			const draggedFrom = this.wrapper.screen2pos (event)
 			this.wrapper.getByClass (draggedFrom).addClasses ('selected')
+			dragMap.set (event.pointerId, draggedFrom)
 		},
 		pointerup (event) {
+			const draggedFrom = dragMap.get (event.pointerId)
+			dragMap.delete (event.pointerId)
 			this.wrapper.getByClass (draggedFrom).removeClasses ('selected')
 			this.wrapper.swap (draggedFrom, this.wrapper.screen2pos (event))
 		}
