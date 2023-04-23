@@ -7,6 +7,7 @@ body {
 .playfield {
 	width: 100%;
 	height: 100dvh;
+	touch-action: none;
 }
 
 /* gems are constructed around on an 16*16 svg-"pixel" grid around the origin. they are then moved into position with translate. one gem per svg-"pixel". */
