@@ -1,27 +1,29 @@
-const dragMap = new Map ()
 let currentActionScheme
 
 const actions = {
 	dragAndSwap : {
-		pointerdown (event) {
-			const draggedFrom = this.wrapper.screen2pos (event)
-			this.wrapper.getByClass (draggedFrom).addClasses ('selected')
-			dragMap.set (event.pointerId, draggedFrom)
+		fieldEvents: {
+			pointerdown (event) {
+				const draggedFrom = this.wrapper.screen2pos (event)
+				this.wrapper.getByClass (draggedFrom).addClasses ('selected')
+				actions.dragAndSwap.dragged.set (event.pointerId, draggedFrom)
+			},
+			pointerup (event) {
+				const draggedFrom = actions.dragAndSwap.dragged.get (event.pointerId)
+				actions.dragAndSwap.dragged.delete (event.pointerId)
+				this.wrapper.getByClass (draggedFrom).removeClasses ('selected')
+				this.wrapper.swap (draggedFrom, this.wrapper.screen2pos (event))
+			}
 		},
-		pointerup (event) {
-			const draggedFrom = dragMap.get (event.pointerId)
-			dragMap.delete (event.pointerId)
-			this.wrapper.getByClass (draggedFrom).removeClasses ('selected')
-			this.wrapper.swap (draggedFrom, this.wrapper.screen2pos (event))
-		}
+		dragged: new Map ()
 	}
 }
 
 export const registerActions = (field, actionsName) => {
 	if (currentActionScheme)
-		for (const type in actions [currentActionScheme])
-		field.removeEventListener (type, actions [currentActionScheme] [type])
-	for (const type in actions [actionsName])
-		field.addEventListener (type, actions [actionsName] [type])
+		for (const type in actions [currentActionScheme].fieldEvents)
+		field.removeEventListener (type, actions [currentActionScheme].fieldEvents [type])
+	for (const type in actions [actionsName].fieldEvents)
+		field.addEventListener (type, actions [actionsName].fieldEvents [type])
 	currentActionScheme = actionsName
 }
