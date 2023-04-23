@@ -1,7 +1,7 @@
 const dragMap = new Map ()
 let currentActionScheme
 
-export const actions = {
+const actions = {
 	dragAndSwap : {
 		pointerdown (event) {
 			const draggedFrom = this.wrapper.screen2pos (event)
