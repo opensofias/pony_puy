@@ -12,7 +12,6 @@ const actions = {
 				const draggedFrom = actions.dragAndSwap.dragged.get (event.pointerId)
 				actions.dragAndSwap.dragged.delete (event.pointerId)
 				draggedFrom.removeClasses ('selected')
-				console.log (this.wrapper.getViaScreen (event))
 				draggedFrom.swapWith (this.wrapper.getViaScreen (event))
 			}
 		},
