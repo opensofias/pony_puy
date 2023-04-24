@@ -19,6 +19,7 @@ const actions = {
 			pointerleave (event) {
 				const draggedFrom = actions.dragAndSwap.dragged.get (event.pointerId)
 				actions.dragAndSwap.dragged.delete (event.pointerId)
+				draggedFrom?.removeClasses ('selected')
 			}
 		},
 		dragged: new Map (),
