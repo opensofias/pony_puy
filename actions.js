@@ -12,7 +12,7 @@ const actions = {
 				const draggedFrom = actions.dragAndSwap.dragged.get (event.pointerId)
 				actions.dragAndSwap.dragged.delete (event.pointerId)
 				this.wrapper.getByClass (draggedFrom).removeClasses ('selected')
-				this.wrapper.swap (draggedFrom, this.wrapper.screen2pos (event))
+				this.wrapper.swapByPos (draggedFrom, this.wrapper.screen2pos (event))
 			}
 		},
 		bodyEvents: {

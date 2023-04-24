@@ -33,7 +33,7 @@ export class Playfield extends ElementWrapper {
 		else
 			return [...this.querySelectorAll (classQuery)].map (x => x.wrapper)
 	}
-	swap (...positions) {
+	swapByPos (...positions) {
 		const things = positions.map (pos => this.getByClass (pos))
 		things.forEach ((thing, idx) => thing.position = positions[1 - idx])
 		things.forEach (thing => thing.updateBlobAround ())
