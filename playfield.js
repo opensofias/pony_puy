@@ -66,4 +66,7 @@ export class Playfield extends ElementWrapper {
 			}
 		}, {})
 	}
+	getViaScreen (...param) {
+		return this.getByClass (this.screen2pos (...param))
+	}
 }
