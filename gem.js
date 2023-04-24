@@ -14,6 +14,13 @@ class MaybeGem extends ElementWrapper {
 	get field () {
 		return this.parent.wrapper
 	}
+	swapWith (other) {
+		const oldPosition = this.position
+		this.position = other.position
+		other.position = oldPosition
+		this?.updateBlobAround()
+		other?.updateBlobAround()
+	}
 }
 getVarSetClass (MaybeGem, 'x y')
 
