@@ -4,15 +4,16 @@ const actions = {
 	dragAndSwap : {
 		fieldEvents: {
 			pointerdown (event) {
-				const draggedFrom = this.wrapper.screen2pos (event)
-				this.wrapper.getByClass (draggedFrom).addClasses ('selected')
+				const draggedFrom = this.wrapper.getViaScreen (event)
+				draggedFrom.addClasses ('selected')
 				actions.dragAndSwap.dragged.set (event.pointerId, draggedFrom)
 			},
 			pointerup (event) {
 				const draggedFrom = actions.dragAndSwap.dragged.get (event.pointerId)
 				actions.dragAndSwap.dragged.delete (event.pointerId)
-				this.wrapper.getByClass (draggedFrom).removeClasses ('selected')
-				this.wrapper.swapByPos (draggedFrom, this.wrapper.screen2pos (event))
+				draggedFrom.removeClasses ('selected')
+				console.log (this.wrapper.getViaScreen (event))
+				draggedFrom.swapWith (this.wrapper.getViaScreen (event))
 			}
 		},
 		bodyEvents: {
