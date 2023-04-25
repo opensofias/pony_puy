@@ -11,3 +11,5 @@ generateBlobStyles ()
 registerProps ()
 
 registerActions (playfield, 'dragAndSwap')
+
+window.deregister = () => registerActions (playfield) // for testing if deregistering works

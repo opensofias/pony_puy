@@ -1,4 +1,5 @@
-let currentActionScheme
+let currentSchemeName
+const currentScheme = () => actions [currentSchemeName]
 
 const actions = {
 	dragAndSwap : {
@@ -26,18 +27,18 @@ const actions = {
 	}
 }
 
-export const registerActions = (field, actionsName) => {
-	if (currentActionScheme) {
-		for (const type in actions [currentActionScheme].fieldEvents)
-			field.removeEventListener (type, actions [currentActionScheme].fieldEvents [type])
-		for (const type in actions [currentActionScheme].bodyEvents)
-			document.body.removeEventListener (type, actions [currentActionScheme].bodyEvents [type])
+export const registerActions = (field, newSchemeName) => {
+	if (currentSchemeName) {
+		for (const type in currentScheme ().fieldEvents)
+			field.removeEventListener (type, currentScheme ().fieldEvents [type])
+		for (const type in currentScheme ().bodyEvents)
+			document.body.removeEventListener (type, currentScheme ().bodyEvents [type])
 	}
-	if (actionsName) {
-		for (const type in actions [actionsName].fieldEvents)
-			field.addEventListener (type, actions [actionsName].fieldEvents [type])
-		for (const type in actions [actionsName].bodyEvents)
-			document.body.addEventListener (type, actions [actionsName].bodyEvents [type])
+	currentSchemeName = newSchemeName
+	if (newSchemeName) {
+		for (const type in currentScheme ().fieldEvents)
+			field.addEventListener (type, currentScheme ().fieldEvents [type])
+		for (const type in currentScheme ().bodyEvents)
+			document.body.addEventListener (type, currentScheme ().bodyEvents [type])
 	}
-	currentActionScheme = actionsName
 }
