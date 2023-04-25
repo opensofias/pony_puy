@@ -27,6 +27,11 @@ const actions = {
 	}
 }
 
+const applyListeners = (target, listeners, add = false) =>
+	Object.entries (listeners).forEach (([type, listener]) =>
+		target [(add ? 'add' : 'remove') + 'EventListener'] (type, listener)
+	)
+
 export const registerActions = (field, newSchemeName) => {
 	if (currentSchemeName) {
 		for (const type in currentScheme ().fieldEvents)
