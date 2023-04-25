@@ -33,9 +33,11 @@ export const registerActions = (field, actionsName) => {
 		for (const type in actions [currentActionScheme].bodyEvents)
 			document.body.removeEventListener (type, actions [currentActionScheme].bodyEvents [type])
 	}
-	for (const type in actions [actionsName].fieldEvents)
-		field.addEventListener (type, actions [actionsName].fieldEvents [type])
-	for (const type in actions [actionsName].bodyEvents)
-		document.body.addEventListener (type, actions [actionsName].bodyEvents [type])
+	if (actionsName) {
+		for (const type in actions [actionsName].fieldEvents)
+			field.addEventListener (type, actions [actionsName].fieldEvents [type])
+		for (const type in actions [actionsName].bodyEvents)
+			document.body.addEventListener (type, actions [actionsName].bodyEvents [type])
+	}
 	currentActionScheme = actionsName
 }
