@@ -34,16 +34,12 @@ const applyListeners = (target, listeners, add = false) =>
 
 export const registerActions = (field, newSchemeName) => {
 	if (currentSchemeName) {
-		for (const type in currentScheme ().fieldEvents)
-			field.removeEventListener (type, currentScheme ().fieldEvents [type])
-		for (const type in currentScheme ().bodyEvents)
-			document.body.removeEventListener (type, currentScheme ().bodyEvents [type])
+		applyListeners (field, currentScheme ().fieldEvents, false)
+		applyListeners (document.body, currentScheme ().bodyEvents, false)
 	}
 	currentSchemeName = newSchemeName
 	if (newSchemeName) {
-		for (const type in currentScheme ().fieldEvents)
-			field.addEventListener (type, currentScheme ().fieldEvents [type])
-		for (const type in currentScheme ().bodyEvents)
-			document.body.addEventListener (type, currentScheme ().bodyEvents [type])
+		applyListeners (field, currentScheme ().fieldEvents, true)
+		applyListeners (document.body, currentScheme ().bodyEvents, true)
 	}
 }
