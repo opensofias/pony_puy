@@ -20,3 +20,6 @@ const countRows = (field, {dx = 0, dy = 0} = {dx: 1, dy: 0}) => {
 	return result
 }
 
+export const destroyRows = (field, {dx = 1, dy = 0, length = 3} = {}) => {
+	countRows (field, {dx, dy}).forEach (row => (row.size >= length) && row.forEach (gem => gem.destroyGem()))
+}
