@@ -4,17 +4,14 @@ const countRows = (field, {dx = 0, dy = 0} = {dx: 1, dy: 0}) => {
 	const result = []
 	hyperIter ([field.high, field.wide], ([y, x]) => {
 		const current = field.getByClass ({x, y})
-		let currentGroup = result.findLast (group => group.includes (current))
-		if (!currentGroup) {
-			currentGroup = [current]
-			result.push (currentGroup)
-		}
+		let currentGroup =
+			result.findLast (group => group.includes (current))
+		!currentGroup && result.push (currentGroup = [current])
 
 		const match = field.getByClass ({
 			y: y + dy, x: x + dx, color: current.color
 		})
-		if (match)
-			currentGroup.push (match)
+		match && currentGroup.push (match)
 	})
 	return result
 }
