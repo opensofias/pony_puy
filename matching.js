@@ -1,6 +1,6 @@
 import { hyperIter } from "./tools"
 
-const countRows = (field, {dx = 0, dy = 0}) => {
+const countRows = (field, {dx = 0, dy = 0} = {dx: 1, dy: 0}) => {
 	const result = new Set ()
 	hyperIter ([field.high, field.wide], ([y, x]) => {
 		const current = field.getByClass ({x, y})
