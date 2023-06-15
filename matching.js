@@ -4,8 +4,7 @@ const countRows = (field, {dx = 0, dy = 0} = {dx: 1, dy: 0}) => {
 	const result = []
 	hyperIter ([field.high, field.wide], ([y, x]) => {
 		const current = field.getByClass ({x, y})
-		let currentGroup
-		result.forEach (group => {group.includes (current) && (currentGroup = group)})
+		let currentGroup = result.findLast (group => group.includes (current))
 		if (!currentGroup) {
 			currentGroup = [current]
 			result.push (currentGroup)
