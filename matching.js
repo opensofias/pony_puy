@@ -1,4 +1,4 @@
-import { hyperIter } from "./tools"
+import { hyperIter } from "./tools.js"
 
 const countRows = (field, {dx = 0, dy = 0} = {dx: 1, dy: 0}) => {
 	const result = new Set ()
