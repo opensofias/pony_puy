@@ -17,7 +17,6 @@ const countRows = (field, {dx = 0, dy = 0} = {dx: 1, dy: 0}) => {
 		if (match)
 			currentGroup.push (match)
 	})
-	console.log (result)
 	return result
 }
 
